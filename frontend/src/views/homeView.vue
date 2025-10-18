@@ -7,7 +7,8 @@ const expand = ref(false)
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-const value = ref(3.7)
+let value:number = 3.4;
+
 function showDrawer(){
 
 }
