@@ -7,6 +7,10 @@ const expand = ref(false)
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const value = ref(3.7)
+function showDrawer(){
+
+}
 </script>
 
 <template>
@@ -71,7 +75,65 @@ const handleSelect = (key: string, keyPath: string[]) => {
         </el-scrollbar>
         </el-aside>
         <el-container>
-          <el-main>Main</el-main>
+          <el-main>
+            <el-row :gutter="20">
+              <el-col :span="6"><div class="grid-content ep-bg-purple" />
+                <el-card style="max-width: 480px">
+                  <template #header>Yummy hamburger</template>
+                  <img
+                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                    style="width: 100%"
+                    alt="burger"
+                  />
+                  <template #footer>Footer content</template>
+                </el-card>
+              </el-col>
+              <el-col :span="6"><div class="grid-content ep-bg-purple" />
+                <el-card style="max-width: 480px">
+                  <template #header>Yummy hamburger</template>
+                  <img
+                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                    style="width: 100%"
+                    alt="burger"
+                  />
+                  <template #footer>Footer content</template>
+                </el-card>
+              </el-col>
+              <el-col :span="6"><div class="grid-content ep-bg-purple" />
+                <el-card style="max-width: 480px">
+                  <template #header>Yummy hamburger</template>
+                  <img
+                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                    style="width: 100%"
+                    alt="burger"
+                  />
+                  <template #footer>Footer content</template>
+                </el-card>
+              </el-col>
+              <el-col :span="6"><div class="grid-content ep-bg-purple" />
+                <el-card style="max-width: 480px">
+                  <template #header>Yummy hamburger</template>
+                  <img
+                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                    style="width: 100%"
+                    alt="burger"
+                  />
+                  <template #footer>
+                    <el-rate
+                      v-model="value"
+                      disabled
+                      show-score
+                      text-color="#ff9900"
+                      score-template="{value} 分"
+                    />
+                    <br/>
+                    <el-button type="primary" round @click="showDrawer">查看详情</el-button>
+                  </template>
+                </el-card>
+              </el-col>
+            </el-row>
+
+          </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
       </el-container>
@@ -80,7 +142,21 @@ const handleSelect = (key: string, keyPath: string[]) => {
 </template>
 
 <style scoped>
-el-menu--horizontal > .el-menu-item:nth-child(1) {
+#el-menu--horizontal > .el-menu-item:nth-child(1) {
   margin-right: auto;
+}
+.el-row {
+  margin-bottom: 20px;
+}
+.el-row:last-child {
+  margin-bottom: 0;
+}
+.el-col {
+  border-radius: 4px;
+}
+
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
 }
 </style>
