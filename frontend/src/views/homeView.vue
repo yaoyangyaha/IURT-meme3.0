@@ -80,7 +80,7 @@ onMounted(() => {
         >
           <el-menu-item index="0">
             <img
-              style="width: 100px"
+              style="width: 50px"
               src="../images/logo.png"
               alt="IURT Meme3.0"
             />
@@ -89,8 +89,12 @@ onMounted(() => {
           <el-autocomplete
             v-model="state"
             :fetch-suggestions="querySearchAsync"
-            placeholder="Please input"
+            placeholder="搜张图"
             @select="handleSelect"
+            style="display: grid;
+                    align-items: center; /* 垂直居中 */
+                    height: 18%;"
+
           />
 
           <el-menu-item index="2">首页</el-menu-item>
@@ -334,6 +338,12 @@ el-col {
 }
 .el-menu--horizontal > el-menu-item:nth-child(1) {
   margin-right: auto;
+}
+.el-autocomplete{
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 200px; /* 容器高度 */
 }
 
 </style>
