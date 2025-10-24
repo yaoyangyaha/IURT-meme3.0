@@ -339,11 +339,6 @@ el-col {
 .el-menu--horizontal > el-menu-item:nth-child(1) {
   margin-right: auto;
 }
-.el-autocomplete{
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
-  height: 200px; /* 容器高度 */
-}
+
 
 </style>
