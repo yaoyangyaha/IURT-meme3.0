@@ -3,11 +3,9 @@ import { onMounted,ref } from 'vue'
 
 const activeIndex = ref('1')
 const value = ref(3.7)
-import type { ComponentSize } from 'element-plus'
 
 const currentPage4 = ref(4)
 const pageSize4 = ref(100)
-const size = ref<ComponentSize>('default')
 const background = ref(false)
 const disabled = ref(false)
 
@@ -19,51 +17,11 @@ const handleCurrentChange = (val: number) => {
 }
 const state = ref('')
 
-interface LinkItem {
-  value: string
-  link: string
-}
-
-const links = ref<LinkItem[]>([])
-
-const loadAll = () => {
-  return [
-    { value: 'vue', link: 'https://github.com/vuejs/vue' },
-    { value: 'element', link: 'https://github.com/ElemeFE/element' },
-    { value: 'cooking', link: 'https://github.com/ElemeFE/cooking' },
-    { value: 'mint-ui', link: 'https://github.com/ElemeFE/mint-ui' },
-    { value: 'vuex', link: 'https://github.com/vuejs/vuex' },
-    { value: 'vue-router', link: 'https://github.com/vuejs/vue-router' },
-    { value: 'babel', link: 'https://github.com/babel/babel' },
-  ]
-}
-
-let timeout: ReturnType<typeof setTimeout>
-const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
-  const results = queryString
-    ? links.value.filter(createFilter(queryString))
-    : links.value
-
-  clearTimeout(timeout)
-  timeout = setTimeout(() => {
-    cb(results)
-  }, 3000 * Math.random())
-}
-const createFilter = (queryString: string) => {
-  return (restaurant: LinkItem) => {
-    return (
-      restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-    )
-  }
-}
-
-const handleSelect = (item: Record<string, any>) => {
+const handleSelect = (item: Record<string, unknown>) => {
   console.log(item)
 }
 
-onMounted(() => {
-  links.value = loadAll()
-})
+onMounted(() => {})
 </script>
 
 <template>
@@ -86,15 +44,11 @@ onMounted(() => {
             />
           </el-menu-item>
 
-          <el-autocomplete
+          <el-input
             v-model="state"
-            :fetch-suggestions="querySearchAsync"
             placeholder="搜张图"
             @select="handleSelect"
-            style="display: grid;
-                    align-items: center; /* 垂直居中 */
-                    height: 18%;"
-
+            class="search-input"
           />
 
           <el-menu-item index="2">首页</el-menu-item>
@@ -113,9 +67,9 @@ onMounted(() => {
         </el-menu>
       </el-header>
       <el-main>
-        <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
+        <el-row :gutter="8">
+          <el-col :span="6" v-for="i in 20" :key="i">
+            <el-card class="img-card" shadow="hover" style="max-width: 480px">
               <template #header>meme title</template>
               <img
                 src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
@@ -128,164 +82,7 @@ onMounted(() => {
                   disabled
                   show-score
                   text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              alt="meme image"
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
-                />
-                <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-          <el-col :span="6"><div class="grid-content ep-bg-purple" />
-            <el-card style="max-width: 480px">
-              <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} points"
+                  score-template="{value} 分"
                 />
                 <br/>
                 <el-button type="primary" plain>详情</el-button>
@@ -300,7 +97,6 @@ onMounted(() => {
           v-model:current-page="currentPage4"
           v-model:page-size="pageSize4"
           :page-sizes="[50, 100, 150, 200]"
-          :size="size"
           :disabled="disabled"
           :background="background"
           layout="total, sizes, prev, pager, next, jumper"
@@ -321,7 +117,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 el-row {
   margin-bottom: 20px;
 }
@@ -331,14 +127,15 @@ el-row:last-child {
 el-col {
   border-radius: 4px;
 }
-
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
 .el-menu--horizontal > el-menu-item:nth-child(1) {
   margin-right: auto;
 }
 
-
+.img-card {
+  margin-bottom: 8px;
+}
+.search-input {
+  height: 70%;
+  margin-top: 8px;
+}
 </style>
