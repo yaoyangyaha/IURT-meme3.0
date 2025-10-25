@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { onMounted,ref } from 'vue'
-
+import { h,onMounted,ref } from 'vue'
+import { ElNotification } from 'element-plus'
 const activeIndex = ref('1')
 const value = ref(3.7)
 
-const currentPage4 = ref(4)
+const currentPage = ref(1)
 const pageSize4 = ref(100)
 const background = ref(false)
 const disabled = ref(false)
-
+const drawer = ref(false)
+const creator = ref('xxx')
+const uploadDate =ref('1145-01-04')
+const shortInfo =ref('some thing about this picture, such as "FUCK YOU SCH" and "FUCK YOU JETBRAINS". yeah, Fuck Them All!!!')
+const commentCnt = ref(114514)
+const textarea = ref()
 const handleSizeChange = (val: number) => {
   console.log(`${val} items per page`)
 }
@@ -16,16 +21,85 @@ const handleCurrentChange = (val: number) => {
   console.log(`current page: ${val}`)
 }
 const state = ref('')
-
 const handleSelect = (item: Record<string, unknown>) => {
   console.log(item)
 }
-
+const sortMode = ref('hot')
+const url = 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+const srcList = [
+  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
+]
+const star = () => {
+  ElNotification({
+    title: '收藏',
+    type: 'success',
+    message: h('b', { style: 'color: gold' }, '收藏成功'),
+  })
+}
 onMounted(() => {})
+
+
 </script>
 
 <template>
-
+  <el-drawer v-model="drawer">
+    <template #header>
+      <h4>Meme Image</h4>
+    </template>
+    <template #default>
+      <el-image style="width: 80%; text-align: center" :src="url"/>
+      <el-row>
+        <el-col :span="12">
+          <el-text class="mx-1" type="primary" size="large" >上传者</el-text>
+        </el-col>
+        <el-col :span="12">
+          <el-text class="mx-1" size="default" >{{creator}}</el-text>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-text class="mx-1" type="primary" size="large" >上传时间</el-text>
+        </el-col>
+        <el-col :span="12">
+          <el-text class="mx-1" size="default" >{{uploadDate}}</el-text>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-text class="mx-1" type="primary" size="large" >图片简介</el-text>
+        </el-col>
+        <el-col :span="12">
+          <el-text class="mx-1" size="default" >{{shortInfo}}</el-text>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-text class="mx-1" type="primary" size="large" >打分</el-text>
+        </el-col>
+        <el-col :span="12">
+          <el-rate v-model="value" allow-half />
+        </el-col>
+      </el-row>
+      <el-divider />
+      <div>
+        <h3>评论区</h3>
+        <el-text class="mx-1" type="info" size="small">共 {{commentCnt}} 条评论</el-text>
+        <el-row :gutter="20">
+          <el-col :span="4"><el-avatar :size="50" :src="url" /></el-col>
+          <el-col :span="14">
+            <el-input
+              v-model="textarea"
+              style="width: 240px"
+              :rows="2"
+              type="textarea"
+              placeholder="友善评论，温暖你我心"
+            />
+          </el-col>
+          <el-col :span="4"><el-button type="primary" round style="margin-top: 8px;">发送评论</el-button></el-col>
+        </el-row>
+      </div>
+    </template>
+  </el-drawer>
   <div class="common-layout">
     <el-container>
       <el-header>
@@ -36,7 +110,7 @@ onMounted(() => {})
           :ellipsis="false"
           @select="handleSelect"
         >
-          <el-menu-item index="0">
+          <el-menu-item index="0" alt="IURT Meme3.0" href="#">
             <img
               style="width: 50px"
               src="../images/logo.png"
@@ -67,14 +141,29 @@ onMounted(() => {})
         </el-menu>
       </el-header>
       <el-main>
+        <div class="sort-box">
+          <el-radio-group v-model="sortMode" size="large" fill="#6cf">
+            <el-radio-button label="最热门" value="hot" />
+            <el-radio-button label="最新" value="new" />
+            <el-radio-button label="评论最多" value="mostComment" />
+            <el-radio-button label="A-Z" value="AZ" />
+          </el-radio-group>
+        </div>
+        <br/>
         <el-row :gutter="8">
           <el-col :span="6" v-for="i in 20" :key="i">
             <el-card class="img-card" shadow="hover" style="max-width: 480px">
               <template #header>meme title</template>
-              <img
-                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                style="width: 100%"
-                alt="meme image"
+              <el-image
+                style="width: 100%; height: 100%"
+                :src="url"
+                :zoom-rate="1.2"
+                :max-scale="7"
+                :min-scale="0.2"
+                :preview-src-list="srcList"
+                show-progress
+                :initial-index="4"
+                fit="cover"
               />
               <template #footer>
                 <el-rate
@@ -85,8 +174,8 @@ onMounted(() => {})
                   score-template="{value} 分"
                 />
                 <br/>
-                <el-button type="primary" plain>详情</el-button>
-                <el-button type="warning" plain>收藏</el-button>
+                <el-button type="primary" plain @click="drawer=true">详情</el-button>
+                <el-button type="warning" plain  @click="star">收藏</el-button>
               </template>
             </el-card>
           </el-col>
@@ -94,7 +183,7 @@ onMounted(() => {})
       </el-main>
       <el-footer>
         <el-pagination
-          v-model:current-page="currentPage4"
+          v-model:current-page="currentPage"
           v-model:page-size="pageSize4"
           :page-sizes="[50, 100, 150, 200]"
           :disabled="disabled"
@@ -137,5 +226,8 @@ el-col {
 .search-input {
   height: 70%;
   margin-top: 8px;
+}
+.sort-box{
+  text-align: center;
 }
 </style>
