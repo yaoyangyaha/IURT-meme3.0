@@ -3,14 +3,14 @@ import { h,onMounted,ref } from 'vue'
 import { ElNotification } from 'element-plus'
 import router from "@/router";
 const activeIndex = ref('1')
-const value = ref(3.7)
+//const value = ref(3.7)
 
-const drawer = ref(false)
-const creator = ref('xxx')
-const uploadDate =ref('1145-01-04')
-const shortInfo =ref('some thing about this picture, such as "FUCK YOU SCH" and "FUCK YOU JETBRAINS". yeah, Fuck Them All!!!')
-const commentCnt = ref(114514)
-const textarea = ref()
+// const drawer = ref(false)
+// const creator = ref('xxx')
+// const uploadDate =ref('1145-01-04')
+// const shortInfo =ref('something about this picture, such as "FUCK YOU SCH" and "FUCK YOU JETBRAINS". yeah, Fuck Them All!!!')
+// const commentCnt = ref(114514)
+// const textarea = ref()
 const state = ref('')
 const handleSelect = (item: Record<string, unknown>) => {
   console.log(item)
@@ -30,7 +30,6 @@ const gotoUpload = () => {
 const randomPic = () => {
   // need fill something.
 }
-const url = 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
 
 const test = () => {
   ElNotification({
@@ -47,64 +46,64 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-drawer v-model="drawer">
-    <template #header>
-      <h4>Meme Image</h4>
-    </template>
-    <template #default>
-      <el-image style="width: 80%; text-align: center" :src="url"/>
-      <el-row>
-        <el-col :span="12">
-          <el-text class="mx-1" type="primary" size="large" >上传者</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-text class="mx-1" size="default" >{{creator}}</el-text>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-text class="mx-1" type="primary" size="large" >上传时间</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-text class="mx-1" size="default" >{{uploadDate}}</el-text>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-text class="mx-1" type="primary" size="large" >图片简介</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-text class="mx-1" size="default" >{{shortInfo}}</el-text>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="12">
-          <el-text class="mx-1" type="primary" size="large" >打分</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-rate v-model="value" allow-half />
-        </el-col>
-      </el-row>
-      <el-divider />
-      <div>
-        <h3>评论区</h3>
-        <el-text class="mx-1" type="info" size="small">共 {{commentCnt}} 条评论</el-text>
-        <el-row :gutter="20">
-          <el-col :span="4"><el-avatar :size="50" :src="url" /></el-col>
-          <el-col :span="14">
-            <el-input
-              v-model="textarea"
-              style="width: 240px"
-              :rows="2"
-              type="textarea"
-              placeholder="友善评论，温暖你我心"
-            />
-          </el-col>
-          <el-col :span="4"><el-button type="primary" round style="margin-top: 8px;">发送评论</el-button></el-col>
-        </el-row>
-      </div>
-    </template>
-  </el-drawer>
+<!--  <el-drawer v-model="drawer">-->
+<!--    <template #header>-->
+<!--      <h4>Meme Image</h4>-->
+<!--    </template>-->
+<!--    <template #default>-->
+<!--      <el-image style="width: 80%; text-align: center" :src="url"/>-->
+<!--      <el-row>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" type="primary" size="large" >上传者</el-text>-->
+<!--        </el-col>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" size="default" >{{creator}}</el-text>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--      <el-row>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" type="primary" size="large" >上传时间</el-text>-->
+<!--        </el-col>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" size="default" >{{uploadDate}}</el-text>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--      <el-row>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" type="primary" size="large" >图片简介</el-text>-->
+<!--        </el-col>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" size="default" >{{shortInfo}}</el-text>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--      <el-row>-->
+<!--        <el-col :span="12">-->
+<!--          <el-text class="mx-1" type="primary" size="large" >打分</el-text>-->
+<!--        </el-col>-->
+<!--        <el-col :span="12">-->
+<!--          <el-rate v-model="value" allow-half />-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--      <el-divider />-->
+<!--      <div>-->
+<!--        <h3>评论区</h3>-->
+<!--        <el-text class="mx-1" type="info" size="small">共 {{commentCnt}} 条评论</el-text>-->
+<!--        <el-row :gutter="20">-->
+<!--          <el-col :span="4"><el-avatar :size="50" :src="url" /></el-col>-->
+<!--          <el-col :span="14">-->
+<!--            <el-input-->
+<!--              v-model="textarea"-->
+<!--              style="width: 240px"-->
+<!--              :rows="2"-->
+<!--              type="textarea"-->
+<!--              placeholder="友善评论，温暖你我心"-->
+<!--            />-->
+<!--          </el-col>-->
+<!--          <el-col :span="4"><el-button type="primary" round style="margin-top: 8px;">发送评论</el-button></el-col>-->
+<!--        </el-row>-->
+<!--      </div>-->
+<!--    </template>-->
+<!--  </el-drawer>-->
   <div class="common-layout">
     <el-container>
       <el-header>
@@ -145,6 +144,7 @@ onMounted(() => {
           </el-sub-menu>
         </el-menu>
       </el-header>
+      <!-- header END -->
       <el-main>
 
       </el-main>
