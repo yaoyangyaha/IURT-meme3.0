@@ -30,19 +30,18 @@ const gotoUpload = () => {
 const randomPic = () => {
   // need fill something.
 }
-const sortMode = ref('hot')
 const url = 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
-const srcList = [
-  'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-]
-const star = () => {
+
+const test = () => {
   ElNotification({
-    title: '收藏',
-    type: 'success',
-    message: h('b', { style: 'color: gold' }, '收藏成功'),
+    title: 'test',
+    type: 'info',
+    message: h('b', { style: 'color: grey' }, 'test'),
   })
 }
-onMounted(() => {})
+onMounted(() => {
+  test()
+})
 
 
 </script>
