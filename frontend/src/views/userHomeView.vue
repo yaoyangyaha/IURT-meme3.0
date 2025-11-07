@@ -5,22 +5,12 @@ import router from "@/router";
 const activeIndex = ref('1')
 const value = ref(3.7)
 
-const currentPage = ref(1)
-const pageSize4 = ref(100)
-const background = ref(false)
-const disabled = ref(false)
 const drawer = ref(false)
 const creator = ref('xxx')
 const uploadDate =ref('1145-01-04')
 const shortInfo =ref('some thing about this picture, such as "FUCK YOU SCH" and "FUCK YOU JETBRAINS". yeah, Fuck Them All!!!')
 const commentCnt = ref(114514)
 const textarea = ref()
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
-}
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
-}
 const state = ref('')
 const handleSelect = (item: Record<string, unknown>) => {
   console.log(item)
@@ -157,58 +147,9 @@ onMounted(() => {})
         </el-menu>
       </el-header>
       <el-main>
-        <div class="sort-box">
-          <el-radio-group v-model="sortMode" size="large" fill="#6cf">
-            <el-radio-button label="最热门" value="hot" />
-            <el-radio-button label="最新" value="new" />
-            <el-radio-button label="评论最多" value="mostComment" />
-            <el-radio-button label="A-Z" value="AZ" />
-          </el-radio-group>
-        </div>
-        <br/>
-        <el-row :gutter="8">
-          <el-col :span="6" v-for="i in 20" :key="i">
-            <el-card class="img-card" shadow="hover" style="max-width: 480px">
-              <template #header>meme title</template>
-              <el-image
-                style="width: 100%; height: 100%"
-                :src="url"
-                :zoom-rate="1.2"
-                :max-scale="7"
-                :min-scale="0.2"
-                :preview-src-list="srcList"
-                show-progress
-                :initial-index="4"
-                fit="cover"
-              />
-              <template #footer>
-                <el-rate
-                  v-model="value"
-                  disabled
-                  show-score
-                  text-color="#ff9900"
-                  score-template="{value} 分"
-                />
-                <br/>
-                <el-button type="primary" plain @click="drawer=true">详情</el-button>
-                <el-button type="warning" plain  @click="star">收藏</el-button>
-              </template>
-            </el-card>
-          </el-col>
-        </el-row>
+
       </el-main>
       <el-footer>
-        <el-pagination
-          v-model:current-page="currentPage"
-          v-model:page-size="pageSize4"
-          :page-sizes="[50, 100, 150, 200]"
-          :disabled="disabled"
-          :background="background"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="400"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-        />
         <el-divider />
         <div style="text-align: center;">
           IURT Meme3.0
