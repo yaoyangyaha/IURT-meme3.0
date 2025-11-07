@@ -5,6 +5,7 @@ import router from "@/router";
 const activeIndex = ref('1')
 const value = ref(3.7)
 
+let isAdmin = ref<boolean>(true)
 const currentPage = ref(1)
 const pageSize4 = ref(100)
 const background = ref(false)
@@ -146,7 +147,7 @@ onMounted(() => {})
             <template #title>我的</template>
             <el-menu-item index="2-1" @click="gotoUser">用户中心</el-menu-item>
             <el-menu-item index="2-2" @click="randomPic">随机一张</el-menu-item>
-            <el-menu-item index="2-3" @click="gotoAdmin">管理中心</el-menu-item>
+            <el-menu-item index="2-3" @click="gotoAdmin" v-if="isAdmin">管理中心</el-menu-item>
             <el-sub-menu index="2-4">
               <template #title @click="gotoUpload">上传</template>
               <el-menu-item index="2-4-1">上传图片</el-menu-item>

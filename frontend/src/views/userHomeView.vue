@@ -12,6 +12,8 @@ const activeIndex = ref('1')
 // const commentCnt = ref(114514)
 // const textarea = ref()
 const state = ref('')
+let isAdmin = ref<boolean>(true)
+let username = ref<string>('yaoyangyaha')
 const handleSelect = (item: Record<string, unknown>) => {
   console.log(item)
 }
@@ -134,7 +136,7 @@ onMounted(() => {
             <template #title>我的</template>
             <el-menu-item index="2-1" @click="gotoUser">用户中心</el-menu-item>
             <el-menu-item index="2-2" @click="randomPic">随机一张</el-menu-item>
-            <el-menu-item index="2-3" @click="gotoAdmin">管理中心</el-menu-item>
+            <el-menu-item index="2-3" @click="gotoAdmin" v-if="isAdmin">管理中心</el-menu-item>
             <el-sub-menu index="2-4">
               <template #title @click="gotoUpload">上传</template>
               <el-menu-item index="2-4-1">上传图片</el-menu-item>
@@ -145,9 +147,16 @@ onMounted(() => {
         </el-menu>
       </el-header>
       <!-- header END -->
-      <el-main>
+      <el-container>
+        <el-aside width="200px">
+          <h2>用户中心</h2>
+          side bar zone
+        </el-aside>
+        <el-main>
+          <h1>hi, {{username}}!</h1>
 
-      </el-main>
+        </el-main>
+      </el-container>
       <el-footer>
         <el-divider />
         <div style="text-align: center;">
